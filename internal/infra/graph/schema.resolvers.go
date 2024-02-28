@@ -6,31 +6,26 @@ package graph
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/leonardogregoriocs/clean_architecture_fullcycle/internal/infra/graph/model"
-	"github.com/leonardogregoriocs/clean_architecture_fullcycle/internal/usecase"
 )
 
 // CreateOrder is the resolver for the createOrder field.
 func (r *mutationResolver) CreateOrder(ctx context.Context, input *model.OrderInput) (*model.Order, error) {
-	dto := usecase.OrderInputDTO{
-		ID:    input.ID,
-		Price: float64(input.Price),
-		Tax:   float64(input.Tax),
-	}
-	output, err := r.CreateOrderUseCase.Execute(dto)
-	if err != nil {
-		return nil, err
-	}
-	return &model.Order{
-		ID:         output.ID,
-		Price:      float64(output.Price),
-		Tax:        float64(output.Tax),
-		FinalPrice: float64(output.FinalPrice),
-	}, nil
+	panic(fmt.Errorf("not implemented: CreateOrder - createOrder"))
+}
+
+// Orders is the resolver for the orders field.
+func (r *queryResolver) Orders(ctx context.Context) ([]*model.Order, error) {
+	panic(fmt.Errorf("not implemented: Orders - orders"))
 }
 
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
+// Query returns QueryResolver implementation.
+func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
+
 type mutationResolver struct{ *Resolver }
+type queryResolver struct{ *Resolver }

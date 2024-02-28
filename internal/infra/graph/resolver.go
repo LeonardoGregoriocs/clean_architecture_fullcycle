@@ -8,4 +8,5 @@ import "github.com/leonardogregoriocs/clean_architecture_fullcycle/internal/usec
 
 type Resolver struct {
 	CreateOrderUseCase usecase.CreateOrderUseCase
+	ListOrdersUseCase  usecase.ListOrdersUseCase
 }
